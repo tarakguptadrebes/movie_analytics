@@ -8,6 +8,7 @@ SELECT
 	tb.genres,
 	tr.avg_rating,
 	tr.votes,
+	tm.popularity,
 	tm.revenue,
 	tm.budget
 FROM title_basics_cleaned AS tb

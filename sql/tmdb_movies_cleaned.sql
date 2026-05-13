@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS tmdb_movies_cleaned;
 
 CREATE TABLE tmdb_movies_cleaned AS
 	SELECT imdb_id,
+		popularity,
 		revenue,
 		budget
 	FROM tmdb_movies
