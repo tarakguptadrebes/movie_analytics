@@ -8,6 +8,6 @@ CREATE TABLE title_basics_cleaned AS
 		genres
 	FROM title_basics
 	WHERE "titleType"='movie'
-		AND "startYear" BETWEEN 2000 AND 2025;
+		AND "startYear" BETWEEN 2000 AND 2022;
 
 SELECT * FROM title_basics_cleaned

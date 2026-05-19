@@ -1,7 +1,7 @@
 import kagglehub
 import pandas as pd
 import os
-from database import get_engine
+from movie_analytics.database import get_engine
 
 
 def download():

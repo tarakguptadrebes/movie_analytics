@@ -1,7 +1,7 @@
 import pandas as pd
 from pathlib import Path
 from dotenv import load_dotenv
-from database import get_engine
+from movie_analytics.database import get_engine
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / '.env')

@@ -1,7 +1,7 @@
 from pathlib import Path
 from dotenv import load_dotenv
 from sqlalchemy import text
-from database import get_engine
+from movie_analytics.database import get_engine
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
