@@ -1,10 +1,14 @@
 import kagglehub
 import pandas as pd
+from pathlib import Path
+from dotenv import load_dotenv
 import os
 from movie_analytics.database import get_engine
 
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+load_dotenv(BASE_DIR / '.env')
 
-def download():
+def download_tmdb():
     path = kagglehub.dataset_download("asaniczka/tmdb-movies-dataset-2023-930k-movies")
     print("Path to dataset files:", path)
 
@@ -26,4 +30,4 @@ def download():
                 print(f"Processed chunk {i+1}")
 
 if __name__ == "__main__":
-    download()
+    download_tmdb()

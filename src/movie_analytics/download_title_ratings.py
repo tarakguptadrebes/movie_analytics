@@ -3,10 +3,10 @@ from pathlib import Path
 from dotenv import load_dotenv
 from movie_analytics.database import get_engine
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 load_dotenv(BASE_DIR / '.env')
 
-def download():
+def download_ratings():
     engine = get_engine()
     url = "https://datasets.imdbws.com/title.ratings.tsv.gz"
 
@@ -24,12 +24,12 @@ def download():
 
         if not df_filtered.empty:
             if first_write:
-                df_filtered.to_sql("title_ratings", con=engine, if_exists="replace", index=False, method="multi")
+                df_filtered.to_sql("title_ratings", con=engine, if_exists="replace", index=False)
                 first_write = False
                 print(f"Processed chunk {i+1}")
             else:
-                df_filtered.to_sql("title_ratings", con=engine, if_exists="append", index=False, method="multi")
+                df_filtered.to_sql("title_ratings", con=engine, if_exists="append", index=False)
                 print(f"Processed chunk {i+1}")
         
 if __name__ == "__main__":
-    download()
+    download_ratings()
