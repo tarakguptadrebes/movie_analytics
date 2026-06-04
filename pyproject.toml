@@ -6,7 +6,7 @@ authors = [
     {name = "Tarak Gupta Drebes",email = "tarak.guptadrebes@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.11"
 dependencies = [
     "pandas (>=3.0.3,<4.0.0)",
     "sqlalchemy (>=2.0.49,<3.0.0)",
@@ -17,6 +17,7 @@ dependencies = [
     "nbformat (>=5.10.4,<6.0.0)",
     "ipykernel (>=7.2.0,<8.0.0)",
     "jupyter (>=1.1.1,<2.0.0)",
+    "streamlit (>=1.58.0,<2.0.0)",
 ]
 
 

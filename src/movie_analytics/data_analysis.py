@@ -28,7 +28,7 @@ def analysis():
     df_revenue_trend = df_revenue_trend[df_revenue_trend["genre"].isin(genres_list)]
     df_revenue_trend["weighted_revenue"] = df_revenue_trend["revenue"]*df_revenue_trend["genre_weight"]
     df_revenue_trend = df_revenue_trend.groupby(["year","genre"],as_index=False).agg(sum_weighted_revenue=("weighted_revenue","sum"))[["year","genre","sum_weighted_revenue"]]
-    df_revenue_trend["weighted_revenue_share"] = (df_revenue_trend["sum_weighted_revenue"])*100/(df_revenue_trend.groupby("year")["sum_weighted_revenue"].transform(sum))
+    df_revenue_trend["weighted_revenue_share"] = (df_revenue_trend["sum_weighted_revenue"])*100/(df_revenue_trend.groupby("year")["sum_weighted_revenue"].transform("sum"))
 
     df_ratings.to_sql("genre_ratings",con=engine,if_exists="replace",index=False)
     df_revenue_total.to_sql("genre_revenue_total",con=engine,if_exists="replace",index=False)
