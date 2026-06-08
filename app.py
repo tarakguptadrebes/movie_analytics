@@ -32,15 +32,15 @@ genre_color_map = dict(zip(genres_list,colors))
 
 df_ratings = load_genre_ratings()
 
-fig=px.bar(df_ratings,
+fig=px.box(df_ratings,
         x="genre", 
-        y="mean_rating",
+        y="avg_rating",
         title="Average Rating by Genre",
         labels={"genre":"Genre","mean_rating":"Average Rating"},
         color="genre",
-        color_discrete_map=genre_color_map
+        color_discrete_map=genre_color_map,
+        category_orders={"genre": genres_list}
     )
-fig.update_yaxes(range=[5,7])
 
 st.plotly_chart(fig, width='stretch')
 
