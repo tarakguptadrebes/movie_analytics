@@ -24,7 +24,7 @@ def load_genre_revenue_trend():
 
 genres_list = ["Action", "Adventure", "Animation", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Sci-Fi", "Thriller"]
 
-colors = ["#636EFA", "#EF553B", "#00CC96", "#AB63FA", "#FFA15A", "#19D3F3", "#FF6692", "#B6E880", "#FFD700", "#72B7B2", "#542788"]
+colors = ["#FF5252", "#38EF7D", "#FFD700", "#00E5FF", "#E040FB", "#FF9100", "#5C5CFF", "#FF4081", "#00F5D4", "#B388FF", "#CCFF00"]
 
 genre_color_map = dict(zip(genres_list,colors))
 
@@ -35,6 +35,8 @@ df_ratings = load_genre_ratings()
 fig=px.bar(df_ratings,
         x="genre", 
         y="mean_rating",
+        title="Average Rating by Genre",
+        labels={"genre":"Genre","mean_rating":"Average Rating"},
         color="genre",
         color_discrete_map=genre_color_map
     )
@@ -48,6 +50,8 @@ fig = px.bar(
     df_revenue_total,
     x="genre",
     y="weighted_revenue_share",
+    title="Weighted Revenue Share by Genre",
+    labels={"genre":"Genre","weighted_revenue_share":"Weighted Revenue Share (%)"},
     color="genre",
     color_discrete_map=genre_color_map
 )
@@ -68,6 +72,8 @@ fig = px.line(
     df_filtered_trend,
     x="year",
     y="weighted_revenue_share",
+    title="Weighted Revenue Share by Genre Over Time",
+    labels={"year":"Year","weighted_revenue_share":"Weighted Revenue Share (%)","genre":"Genre",},
     color="genre",
     color_discrete_map=genre_color_map
 )
