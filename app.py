@@ -31,10 +31,9 @@ def load_genre_revenue_trend():
 
 genres_list = ['Action', 'Adventure', 'Animation', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller']
 
-colors = ['#FF5252', '#38EF7D', '#FFD700', '#00E5FF', '#E040FB', '#FF9100', '#5C5CFF', '#FF4081', '#00F5D4', '#B388FF', '#CCFF00']
+colors = ['#FF6B6B', '#51CF66', '#FFD43B', '#74C0FC', '#B197FC', '#FFA94D', '#63E6BE', '#F783AC', '#94D82D', '#3BC9DB', '#DA77F2']
 
 genre_color_map = dict(zip(genres_list, colors))
-
 
 
 df_ratings = load_genre_ratings()
@@ -43,8 +42,8 @@ fig = px.box(
     df_ratings,
     x='genre', 
     y='avg_rating',
-    title='Average Rating by Genre',
-    labels={'genre': 'Genre', 'avg_rating': 'Average Rating'},
+    title='Rating by Genre',
+    labels={'genre': 'Genre', 'avg_rating': 'Rating'},
     color='genre',
     color_discrete_map=genre_color_map,
     category_orders={'genre': genres_list}
