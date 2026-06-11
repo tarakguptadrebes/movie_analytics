@@ -1,5 +1,8 @@
 # Movie Analytics
 
+## Dashboard Link
+- https://tarakguptadrebes-movie-analytics-app-zvvpxk.streamlit.app
+
 ## Prerequisites
 
 - Python 3.11+
