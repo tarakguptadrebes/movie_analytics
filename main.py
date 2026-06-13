@@ -6,9 +6,9 @@ from movie_analytics.data_analysis import analysis
 
 def main():
 
+    download_tmdb()
     download_basics()
     download_ratings()
-    download_tmdb()
     run_sql()
     analysis()
 
