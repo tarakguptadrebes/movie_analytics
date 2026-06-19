@@ -22,9 +22,9 @@ poetry install
 # Create the PostgreSQL database
 psql -U postgres -c "CREATE DATABASE movies_db;"
 
-# Initialize credentials
+# Initialize environment variables
 cp .env.example .env
-# STOP: Open .env and enter your PostgreSQL password now!
+# Open .env and set your DATABASE_URL.
 ```
 
 ## Run Project
