@@ -12,21 +12,23 @@ from movie_analytics.database import get_engine
 
 st.set_page_config(page_title='Movie Analytics Dashboard', layout='wide')
 
-engine = get_engine()
-
 st.title('Movie Analytics Dashboard')
+
+@st.cache_resource
+def get_db_engine():
+    return get_engine()
 
 @st.cache_data
 def load_genre_ratings():
-    return pd.read_sql('SELECT * FROM genre_ratings', engine)
+    return pd.read_sql('SELECT * FROM genre_ratings', get_db_engine())
 
 @st.cache_data
 def load_genre_revenue_total():
-    return pd.read_sql('SELECT * FROM genre_revenue_total', engine)
+    return pd.read_sql('SELECT * FROM genre_revenue_total', get_db_engine())
 
 @st.cache_data
 def load_genre_revenue_trend():
-    return pd.read_sql('SELECT * FROM genre_revenue_trend', engine)
+    return pd.read_sql('SELECT * FROM genre_revenue_trend', get_db_engine())
 
 genres_list = ['Action', 'Adventure', 'Animation', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller']
 colors = ['#FF6B6B', '#51CF66', '#FFD43B', '#74C0FC', '#B197FC', '#FFA94D', '#63E6BE', '#F783AC', '#94D82D', '#3BC9DB', '#DA77F2']
