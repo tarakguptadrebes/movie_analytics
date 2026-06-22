@@ -50,23 +50,6 @@ df_filtered_trend = df_revenue_trend[df_revenue_trend['genre'].isin(selected_gen
 
 dynamic_order = sorted(df_filtered_ratings['genre'].unique().tolist())
 
-fig = px.box(
-    df_filtered_ratings, 
-    x='avg_rating',
-    y='genre',
-    title='Ratings by Genre',
-    labels={'avg_rating': 'Rating', 'genre': 'Genre'},
-    color='genre',
-    color_discrete_map=genre_color_map,
-    category_orders={'genre': dynamic_order}
-)
-
-fig.update_layout(
-    showlegend=False
-)
-
-st.plotly_chart(fig, width='stretch')
-
 fig = px.bar(
     df_filtered_total,
     x='genre',
@@ -98,3 +81,40 @@ fig = px.line(
 )
 
 st.plotly_chart(fig, width='stretch')
+
+sort_metric = st.selectbox(
+    "Order Box Plot By:",
+    options=["Alphabetical","Median","IQR"]
+)
+
+df_stats = df_filtered_ratings.groupby('genre')['avg_rating'].agg(
+    Median='median',
+    Q1=lambda x: x.quantile(0.25),
+    Q3=lambda x: x.quantile(0.75)
+).reset_index()
+
+df_stats['IQR'] = df_stats['Q3'] - df_stats['Q1']
+
+if sort_metric == "Alphabetical":
+    boxplot_order = sorted(df_filtered_ratings['genre'].unique().tolist())
+elif sort_metric == "Median":
+    boxplot_order = df_stats.sort_values(by='Median', ascending=False)['genre'].tolist()
+elif sort_metric == "IQR":
+    boxplot_order = df_stats.sort_values(by='IQR', ascending=False)['genre'].tolist()
+
+fig = px.box(
+    df_filtered_ratings, 
+    x='avg_rating',
+    y='genre',
+    title='Ratings by Genre',
+    labels={'avg_rating': 'Rating', 'genre': 'Genre'},
+    color='genre',
+    color_discrete_map=genre_color_map,
+    category_orders={'genre': boxplot_order}
+)
+
+fig.update_layout(
+    showlegend=False
+)
+
+st.plotly_chart(fig, use_container_width=True)
