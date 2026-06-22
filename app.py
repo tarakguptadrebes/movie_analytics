@@ -54,11 +54,15 @@ fig = px.box(
     df_filtered_ratings, 
     x='avg_rating',
     y='genre',
-    title='Rating by Genre',
+    title='Ratings by Genre',
     labels={'avg_rating': 'Rating', 'genre': 'Genre'},
     color='genre',
     color_discrete_map=genre_color_map,
     category_orders={'genre': dynamic_order}
+)
+
+fig.update_layout(
+    showlegend=False
 )
 
 st.plotly_chart(fig, width='stretch')
@@ -77,9 +81,11 @@ fig.update_xaxes(
     range=[-0.5, len(genres_list) - 0.5] 
 )
 
-st.plotly_chart(fig, width='stretch')
+fig.update_layout(
+    showlegend=False
+)
 
-df_filtered_trend = df_revenue_trend[df_revenue_trend['genre'].isin(selected_genres)]
+st.plotly_chart(fig, width='stretch')
 
 fig = px.line(
     df_filtered_trend,
