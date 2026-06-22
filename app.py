@@ -54,7 +54,7 @@ fig = px.bar(
     df_filtered_total,
     x='genre',
     y='weighted_revenue_share',
-    title='Weighted Revenue Share by Genre',
+    title='Weighted Revenue Share by Genre (2000-2022)',
     labels={'genre': 'Genre', 'weighted_revenue_share': 'Weighted Revenue Share (%)'},
     color='genre',
     color_discrete_map=genre_color_map
